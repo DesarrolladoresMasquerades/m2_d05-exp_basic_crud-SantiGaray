@@ -59,13 +59,15 @@ const Book = require("../models/Book.model");
 // ****************************************************************************************
 // GET route for updating a specific book from the database
 // ****************************************************************************************
-router.route("/books/:id/edit").get((req, res) => {
-  const id = req.params.id;
-  Book.findById(id).then((book) => {
-    console.log(book);
-    res.render("book-edit", book);
+router.route("/books/:id/edit")
+  .get((req, res) => {
+    const id = req.params.id;
+    Book.findById(id)
+    .then((book) => {
+      console.log(book);
+      res.render("book-edit", book);
+    })
   })
-})
 .post((req, res) => {
   console.log("Edit form body: ", req.body);
   const id = req.params.id;
@@ -84,6 +86,8 @@ router.route("/books/:id/edit").get((req, res) => {
     res.redirect(`/books/${id}`);
   });
 });
+
+// Create Route
 
 router
     .route("/books/create")
